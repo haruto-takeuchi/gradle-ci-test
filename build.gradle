@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.11'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id 'com.diffplug.spotless' version '6.7.0'
+	id 'com.diffplug.spotless' version '6.19.0' // Java17対応した6.7.1以上のバージョンを使う
 }
 
 group = 'com.example'
@@ -26,6 +26,13 @@ spotless {
     java {
       googleJavaFormat()
     }
+
+  format 'misc', {
+    target '**/*.gradle', '**/*.md', '.gitignore'
+
+    indentWithSpaces(2)
+    endWithNewline()
+  }
 }
 
 tasks.named('test') {
